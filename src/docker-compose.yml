@@ -1,0 +1,40 @@
+# Production Docker Compose
+version: '3.8'
+
+services:
+  portfolio-website:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_GA_ID: ${VITE_GA_ID:-G-DEVELOPMENT}
+        VITE_SUPABASE_URL: ${VITE_SUPABASE_URL:-}
+        VITE_SUPABASE_ANON_KEY: ${VITE_SUPABASE_ANON_KEY:-}
+    container_name: portfolio-website-prod
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    networks:
+      - portfolio-network
+
+  # Optional: Add Supabase local instance for development
+  # supabase:
+  #   image: supabase/supabase:latest
+  #   container_name: supabase-local
+  #   ports:
+  #     - "54321:54321"
+  #   environment:
+  #     POSTGRES_PASSWORD: your-super-secret-and-long-postgres-password
+  #   volumes:
+  #     - supabase-data:/var/lib/postgresql/data
+  #   networks:
+  #     - portfolio-network
+
+networks:
+  portfolio-network:
+    driver: bridge
+
+# volumes:
+#   supabase-data:

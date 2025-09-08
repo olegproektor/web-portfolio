@@ -1,0 +1,74 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "dev",
+      "group": "build",
+      "label": "npm: dev",
+      "detail": "Start development server"
+    },
+    {
+      "type": "npm",
+      "script": "build",
+      "group": "build",
+      "label": "npm: build",
+      "detail": "Build for production"
+    },
+    {
+      "type": "npm",
+      "script": "preview",
+      "group": "build",
+      "label": "npm: preview",
+      "detail": "Preview production build"
+    },
+    {
+      "type": "docker-build",
+      "label": "docker-build",
+      "platform": "node",
+      "dockerBuild": {
+        "dockerfile": "${workspaceFolder}/Dockerfile.dev",
+        "context": "${workspaceFolder}",
+        "pull": true
+      }
+    },
+    {
+      "type": "docker-run",
+      "label": "docker-run: dev",
+      "dependsOn": ["docker-build"],
+      "platform": "node",
+      "dockerRun": {
+        "containerName": "portfolio-dev",
+        "image": "portfolio-website:dev",
+        "remove": true,
+        "ports": [
+          {
+            "hostPort": 5173,
+            "containerPort": 5173
+          }
+        ],
+        "volumes": [
+          {
+            "localPath": "${workspaceFolder}",
+            "containerPath": "/app"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Start Supabase Local",
+      "type": "shell",
+      "command": "docker-compose -f docker-compose.dev.yml up supabase-db supabase-studio",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": []
+    }
+  ]
+}
