@@ -24,6 +24,17 @@ const Header: React.FC<HeaderProps> = ({ onBlogClick, onProjectsClick }) => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Close mobile menu when window is resized to desktop size
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsMobileMenuOpen(false)
+      }
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   const navItems = [
     { href: '#about', label: 'О себе' },
     { href: '#experience', label: 'Опыт' },
@@ -56,7 +67,7 @@ const Header: React.FC<HeaderProps> = ({ onBlogClick, onProjectsClick }) => {
         isScrolled ? 'bg-white/80 backdrop-blur-md shadow-soft' : 'bg-transparent'
       }`}
     >
-      <div className="container">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <div className="flex items-center">
@@ -112,6 +123,7 @@ const Header: React.FC<HeaderProps> = ({ onBlogClick, onProjectsClick }) => {
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="lg:hidden p-2"
+            aria-label={isMobileMenuOpen ? "Закрыть меню" : "Открыть меню"}
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -124,7 +136,7 @@ const Header: React.FC<HeaderProps> = ({ onBlogClick, onProjectsClick }) => {
             animate={{ opacity: 1, y: 0 }}
             className="lg:hidden absolute top-full left-0 right-0 bg-white shadow-medium border-t"
           >
-            <nav className="container py-4 space-y-2">
+            <nav className="container mx-auto px-4 sm:px-6 py-4 space-y-2">
               {navItems.map((item) => (
                 <button
                   key={item.href}
@@ -134,7 +146,7 @@ const Header: React.FC<HeaderProps> = ({ onBlogClick, onProjectsClick }) => {
                   {item.label}
                 </button>
               ))}
-              <div className="pt-2 border-t space-y-2">
+              <div className="pt-4 border-t space-y-2">
                 {state.isAdmin && (
                   <Button
                     onClick={() => scrollToSection('#cms')}

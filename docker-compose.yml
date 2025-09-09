@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  portfolio-website-dev:
+    build:
+      context: .
+      dockerfile: src/Dockerfile.dev
+    container_name: portfolio-website-dev
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+
+  portfolio-website:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: portfolio-website
+    ports:
+      - "3001:80"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production

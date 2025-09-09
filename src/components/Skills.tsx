@@ -119,7 +119,7 @@ const Skills = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
           {/* Frontend Skills */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -127,7 +127,7 @@ const Skills = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <Card className="p-6 lg:p-8 h-full">
+            <Card className="p-6 lg:p-8 h-full shadow-soft hover:shadow-medium transition-shadow">
               <h3 className="mb-6">Frontend</h3>
               <div className="space-y-6">
                 {frontendSkills.map((skill, index) => (
@@ -142,7 +142,7 @@ const Skills = () => {
                       transition={{ duration: 1, delay: index * 0.1 }}
                       viewport={{ once: true }}
                     >
-                      <Progress value={skill.level} className="h-2" />
+                      <Progress value={skill.level} className="h-2.5" />
                     </motion.div>
                   </div>
                 ))}
@@ -157,7 +157,7 @@ const Skills = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <Card className="p-6 lg:p-8 h-full">
+            <Card className="p-6 lg:p-8 h-full shadow-soft hover:shadow-medium transition-shadow">
               <h3 className="mb-6">Backend</h3>
               <div className="space-y-6">
                 {backendSkills.map((skill, index) => (
@@ -172,7 +172,7 @@ const Skills = () => {
                       transition={{ duration: 1, delay: index * 0.1 }}
                       viewport={{ once: true }}
                     >
-                      <Progress value={skill.level} className="h-2" />
+                      <Progress value={skill.level} className="h-2.5" />
                     </motion.div>
                   </div>
                 ))}
@@ -181,7 +181,7 @@ const Skills = () => {
           </motion.div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
           {/* Languages */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -189,7 +189,7 @@ const Skills = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <Card className="p-6 lg:p-8 h-full">
+            <Card className="p-6 lg:p-8 h-full shadow-soft hover:shadow-medium transition-shadow">
               <h3 className="mb-6">Языки</h3>
               <div className="space-y-4">
                 {languages.map((lang, index) => (
@@ -218,7 +218,7 @@ const Skills = () => {
                       transition={{ duration: 0.3, delay: index * 0.05 }}
                       viewport={{ once: true }}
                     >
-                      <Badge variant="outline" className="text-sm">
+                      <Badge variant="outline" className="text-sm px-3 py-1.5">
                         {skill}
                       </Badge>
                     </motion.div>
@@ -235,7 +235,7 @@ const Skills = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <Card className="p-6 lg:p-8 h-full">
+            <Card className="p-6 lg:p-8 h-full shadow-soft hover:shadow-medium transition-shadow">
               <h3 className="mb-6">Инструменты и технологии</h3>
               <div className="flex flex-wrap gap-3">
                 {tools.map((tool, index) => (

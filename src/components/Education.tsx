@@ -65,7 +65,7 @@ const Education = () => {
             <h3>Образование</h3>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {education.map((edu, index) => (
               <motion.div
                 key={index}
@@ -75,7 +75,7 @@ const Education = () => {
                 viewport={{ once: true }}
               >
                 <Card className="p-6 h-full hover:shadow-medium transition-shadow">
-                  <div className="flex items-start justify-between mb-4">
+                  <div className="flex flex-wrap items-start justify-between gap-2 mb-4">
                     <div className="flex items-center gap-2 text-muted-foreground">
                       <Calendar className="w-4 h-4" />
                       <span className="text-sm">{edu.period}</span>
@@ -132,7 +132,7 @@ const Education = () => {
             <h3>Награды и достижения</h3>
           </motion.div>
 
-          <div className="grid md:grid-cols-1 gap-6 max-w-md mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-6 max-w-md mx-auto">
             {awards.map((award, index) => (
               <motion.div
                 key={index}

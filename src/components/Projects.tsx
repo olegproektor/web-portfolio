@@ -36,7 +36,7 @@ const Projects: React.FC<ProjectsProps> = ({
     : null
 
   const handleProjectInteraction = (projectTitle: string, action: string) => {
-    // Аналит��ка для маркетинга
+    // Аналитика для маркетинга
     if (typeof window !== 'undefined' && (window as any).gtag) {
       (window as any).gtag('event', 'project_interaction', {
         'event_category': 'engagement',
@@ -62,7 +62,7 @@ const Projects: React.FC<ProjectsProps> = ({
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {featuredProjects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -73,7 +73,7 @@ const Projects: React.FC<ProjectsProps> = ({
               onViewportEnter={() => handleProjectInteraction(project.title, 'view')}
             >
               <Card 
-                className="group hover:shadow-medium transition-all duration-300 h-full overflow-hidden cursor-pointer"
+                className="group hover:shadow-medium transition-all duration-300 overflow-hidden cursor-pointer h-full flex flex-col shadow-soft"
                 onClick={() => {
                   handleProjectInteraction(project.title, 'click')
                   if (onModalProjectClick) {
@@ -85,11 +85,13 @@ const Projects: React.FC<ProjectsProps> = ({
               >
                 {/* Изображение проекта */}
                 <div className="relative overflow-hidden">
-                  <ImageWithFallback
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+                  <div className="aspect-video">
+                    <ImageWithFallback
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
                   
                   {/* Оверлей с меткой доступа */}
                   <div className="absolute top-3 left-3">
@@ -112,13 +114,13 @@ const Projects: React.FC<ProjectsProps> = ({
                   </div>
                 </div>
 
-                <div className="p-6 flex flex-col h-full">
-                  <div className="flex-1">
+                <div className="p-6 flex flex-col flex-grow">
+                  <div className="flex-grow">
                     <div className="mb-3">
                       <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">
                         {project.title}
                       </h3>
-                      <p className="text-sm text-muted-foreground line-clamp-3">
+                      <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
                         {project.description}
                       </p>
                     </div>
@@ -137,12 +139,12 @@ const Projects: React.FC<ProjectsProps> = ({
                   <div className="mb-4">
                     <div className="flex flex-wrap gap-1">
                       {project.technologies.slice(0, 3).map((tech, techIndex) => (
-                        <Badge key={techIndex} variant="outline" className="text-xs">
+                        <Badge key={techIndex} variant="outline" className="text-xs px-2 py-1">
                           {tech}
                         </Badge>
                       ))}
                       {project.technologies.length > 3 && (
-                        <Badge variant="outline" className="text-xs">
+                        <Badge variant="outline" className="text-xs px-2 py-1">
                           +{project.technologies.length - 3}
                         </Badge>
                       )}
@@ -150,11 +152,11 @@ const Projects: React.FC<ProjectsProps> = ({
                   </div>
 
                   {/* Кнопки действий - зафиксированы внизу */}
-                  <div className="flex gap-2 mt-auto">
+                  <div className="flex gap-2">
                     {project.buttonType === 'github' && project.github && (
                       <Button
                         size="sm"
-                        className="flex-1 gradient-bg text-white hover:opacity-90"
+                        className="flex-1 gradient-bg text-white hover:opacity-90 shadow-soft"
                         onClick={(e) => {
                           e.stopPropagation()
                           window.open(project.github, '_blank')
@@ -168,7 +170,7 @@ const Projects: React.FC<ProjectsProps> = ({
                     {project.buttonType === 'link' && project.buttonUrl && (
                       <Button
                         size="sm"
-                        className="flex-1 gradient-bg text-white hover:opacity-90"
+                        className="flex-1 gradient-bg text-white hover:opacity-90 shadow-soft"
                         onClick={(e) => {
                           e.stopPropagation()
                           window.open(project.buttonUrl, '_blank')
@@ -216,6 +218,7 @@ const Projects: React.FC<ProjectsProps> = ({
           <Button 
             variant="outline" 
             size="lg"
+            className="shadow-soft hover:shadow-medium"
             onClick={() => {
               window.open('https://github.com/olegproektor', '_blank')
               handleProjectInteraction('GitHub Profile', 'visit')
@@ -250,13 +253,13 @@ const Projects: React.FC<ProjectsProps> = ({
                 {/* Кнопка закрытия */}
                 <button
                   onClick={onCloseModal}
-                  className="absolute top-4 right-4 z-10 p-2 bg-background/80 rounded-full hover:bg-accent transition-colors"
+                  className="absolute top-4 right-4 z-10 p-2 bg-background/80 rounded-full hover:bg-accent transition-colors shadow-soft"
                 >
                   <X className="w-5 h-5" />
                 </button>
 
                 {/* Изображение проекта */}
-                <div className="relative h-64 lg:h-80 overflow-hidden rounded-t-lg">
+                <div className="relative aspect-video overflow-hidden rounded-t-lg">
                   <ImageWithFallback
                     src={expandedProject.image}
                     alt={expandedProject.title}
@@ -323,7 +326,7 @@ const Projects: React.FC<ProjectsProps> = ({
                     <h3 className="text-lg font-semibold mb-4">Технологии</h3>
                     <div className="flex flex-wrap gap-2">
                       {expandedProject.technologies.map((tech, index) => (
-                        <Badge key={index} variant="outline">
+                        <Badge key={index} variant="outline" className="px-3 py-1.5">
                           {tech}
                         </Badge>
                       ))}
@@ -334,7 +337,7 @@ const Projects: React.FC<ProjectsProps> = ({
                   <div className="flex gap-4 pt-6 border-t">
                     {expandedProject.buttonType === 'github' && expandedProject.github && (
                       <Button
-                        className="gradient-bg text-white hover:opacity-90"
+                        className="gradient-bg text-white hover:opacity-90 shadow-soft"
                         onClick={() => {
                           window.open(expandedProject.github, '_blank')
                           handleProjectInteraction(`GitHub Modal: ${expandedProject.title}`, 'github')
@@ -346,7 +349,7 @@ const Projects: React.FC<ProjectsProps> = ({
                     )}
                     {expandedProject.buttonType === 'link' && expandedProject.buttonUrl && (
                       <Button
-                        className="gradient-bg text-white hover:opacity-90"
+                        className="gradient-bg text-white hover:opacity-90 shadow-soft"
                         onClick={() => {
                           window.open(expandedProject.buttonUrl, '_blank')
                           handleProjectInteraction(`Link Modal: ${expandedProject.title}`, 'link')
@@ -359,7 +362,7 @@ const Projects: React.FC<ProjectsProps> = ({
                     <Button
                       variant="outline"
                       onClick={onCloseModal}
-                      className="ml-auto"
+                      className="ml-auto shadow-soft"
                     >
                       Закрыть
                     </Button>

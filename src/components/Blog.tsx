@@ -100,7 +100,7 @@ const Blog: React.FC<BlogProps> = ({
 
         {/* Search and Filter */}
         <div className="mb-12">
-          <div className="flex flex-col lg:flex-row gap-4 mb-6">
+          <div className="flex flex-col sm:flex-row gap-4 mb-6">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
@@ -150,7 +150,7 @@ const Blog: React.FC<BlogProps> = ({
         </div>
 
         {/* Blog Posts Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredPosts.map((post, index) => (
             <motion.div
               key={post.id}
@@ -176,11 +176,13 @@ const Blog: React.FC<BlogProps> = ({
               >
                 <div className="relative overflow-hidden">
                   {post.coverImage && (
-                    <ImageWithFallback
-                      src={post.coverImage}
-                      alt={post.title}
-                      className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
+                    <div className="aspect-video">
+                      <ImageWithFallback
+                        src={post.coverImage}
+                        alt={post.title}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
                   )}
                   
                   <div className="absolute top-4 left-4 flex gap-2">
@@ -230,8 +232,8 @@ const Blog: React.FC<BlogProps> = ({
                   </div>
 
                   {/* Мета-информация - зафиксирована внизу */}
-                  <div className="flex items-center justify-between text-xs text-muted-foreground mt-auto">
-                    <div className="flex items-center gap-4">
+                  <div className="flex flex-wrap items-center justify-between text-xs text-muted-foreground mt-auto gap-2">
+                    <div className="flex flex-wrap items-center gap-4">
                       <div className="flex items-center gap-1">
                         <User className="w-3 h-3" />
                         <span>{post.author}</span>
@@ -307,7 +309,7 @@ const Blog: React.FC<BlogProps> = ({
                 </button>
 
                 {/* Изображение поста */}
-                <div className="relative h-64 lg:h-80 overflow-hidden rounded-t-lg">
+                <div className="relative aspect-video overflow-hidden rounded-t-lg">
                   {expandedPost.coverImage && (
                     <>
                       <ImageWithFallback
@@ -331,7 +333,7 @@ const Blog: React.FC<BlogProps> = ({
                     <h1 className="text-2xl lg:text-3xl font-bold text-white mb-2">
                       {expandedPost.title}
                     </h1>
-                    <div className="flex items-center gap-4 text-white/80 text-sm">
+                    <div className="flex flex-wrap items-center gap-4 text-white/80 text-sm">
                       <div className="flex items-center gap-1">
                         <User className="w-4 h-4" />
                         <span>{expandedPost.author}</span>
@@ -406,11 +408,13 @@ const BlogPost: React.FC<{
         <article>
           {post.coverImage && (
             <div className="mb-8 rounded-lg overflow-hidden">
-              <ImageWithFallback
-                src={post.coverImage}
-                alt={post.title}
-                className="w-full h-64 lg:h-96 object-cover"
-              />
+              <div className="aspect-video">
+                <ImageWithFallback
+                  src={post.coverImage}
+                  alt={post.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
           )}
 
@@ -425,7 +429,7 @@ const BlogPost: React.FC<{
 
             <h1 className="text-3xl lg:text-4xl font-bold mb-4">{post.title}</h1>
 
-            <div className="flex items-center gap-6 text-sm text-muted-foreground mb-6">
+            <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground mb-6">
               <div className="flex items-center gap-2">
                 <User className="w-4 h-4" />
                 <span>{post.author}</span>

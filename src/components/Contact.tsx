@@ -97,9 +97,9 @@ const Contact = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
           {/* Contact Form */}
-          <div className="lg:col-span-8">
+          <div>
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -110,7 +110,7 @@ const Contact = () => {
                 <h3 className="mb-6">Отправить сообщение</h3>
                 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="name">Имя *</Label>
                       <Input
@@ -160,7 +160,7 @@ const Contact = () => {
                   
                   <Button 
                     type="submit" 
-                    className="w-full md:w-auto gradient-bg text-white hover:opacity-90 transition-opacity"
+                    className="w-full sm:w-auto gradient-bg text-white hover:opacity-90 transition-opacity"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
@@ -178,7 +178,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Info & Social */}
-          <div className="lg:col-span-4 space-y-6">
+          <div className="space-y-6">
             {/* Contact Info */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}

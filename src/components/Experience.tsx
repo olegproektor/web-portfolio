@@ -24,7 +24,7 @@ const Experience = () => {
     },
     {
       company: "Рекламная производственная фирма (контрактный проект)",
-      position: "Специалист по автоматизации бизнес-процессов",
+      position: "Специалист по автоматизации бизнес-процесов",
       period: "2022-2023",
       location: "Санкт-Петербург",
       description: "Разработка и проектирование процессов для менеджеров производства и руководителей в рекламной производственной фирме с использованием AmoCRM. Провёл анализ рабочих процессов, определил ключевые точки для автоматизации, включая управление заказами, взаимодействие с клиентами и координацию производства. Настроил AmoCRM под задачи фирмы, интегрировав её с внутренними системами и обеспечив автоматизацию воронки продаж. Разработал сценарии для эффективной работы менеджеров, упрощающие отслеживание заказов и коммуникацию. Организовал обучение сотрудников для работы с CRM, обеспечив быстрое внедрение.",
@@ -98,7 +98,7 @@ const Experience = () => {
 
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-teal-500 to-blue-600 hidden lg:block"></div>
+          <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-teal-500 to-blue-600 md:left-8 lg:left-8 hidden md:block"></div>
 
           <div className="space-y-8">
             {experiences.map((exp, index) => (
@@ -111,13 +111,13 @@ const Experience = () => {
                 className="relative"
               >
                 {/* Timeline dot */}
-                <div className="absolute left-6 top-8 w-4 h-4 gradient-bg rounded-full border-4 border-background shadow-soft hidden lg:block"></div>
+                <div className="absolute left-2 top-8 w-4 h-4 gradient-bg rounded-full border-4 border-background shadow-soft md:left-6 lg:left-6 hidden md:block"></div>
 
-                <Card className="lg:ml-20 p-6 lg:p-8 hover:shadow-medium transition-shadow">
-                  <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
-                    <div className="mb-4 lg:mb-0">
+                <Card className="md:ml-12 lg:ml-20 p-6 lg:p-8 hover:shadow-medium transition-shadow">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
+                    <div className="mb-4 md:mb-0">
                       <h3 className="text-xl font-semibold mb-2">{exp.position}</h3>
-                      <div className="flex items-center gap-4 text-muted-foreground mb-2">
+                      <div className="flex flex-wrap items-center gap-4 text-muted-foreground mb-2">
                         <div className="flex items-center gap-1">
                           <Calendar className="w-4 h-4" />
                           <span className="text-sm">{exp.period}</span>
