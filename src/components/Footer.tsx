@@ -10,7 +10,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-primary text-primary-foreground py-8">
-      <div className="container">
+      <div className="container px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row items-center justify-between">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

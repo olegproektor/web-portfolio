@@ -103,7 +103,7 @@ const BlogPage: React.FC<BlogPageProps> = ({
         </div>
       </div>
 
-      <div className="container py-12">
+      <div className="container px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

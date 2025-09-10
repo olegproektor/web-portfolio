@@ -100,7 +100,7 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({
       </header>
 
       <main className="py-8 lg:py-16">
-        <div className="container">
+        <div className="container px-4 sm:px-6 lg:px-8">
           {/* Hero секция */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}

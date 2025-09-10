@@ -84,7 +84,7 @@ const Blog: React.FC<BlogProps> = ({
   return (
     <section id="blog" className="py-20 lg:py-32">
       <BlogSEO isHome />
-      <div className="container">
+      <div className="container px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}

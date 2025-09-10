@@ -100,7 +100,7 @@ const Experience = () => {
           {/* Timeline line */}
           <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-teal-500 to-blue-600 md:left-8 lg:left-8 hidden md:block"></div>
 
-          <div className="space-y-8">
+          <div className="space-y-8 px-4 sm:px-6 lg:px-8">
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}

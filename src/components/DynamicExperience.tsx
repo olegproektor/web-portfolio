@@ -21,7 +21,7 @@ const DynamicExperience: React.FC = () => {
   if (isExperienceLoading) {
     return (
       <section id="experience" className="py-20 bg-muted/30">
-        <div className="container">
+        <div className="container px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="h-12 bg-accent rounded mb-4 w-64 mx-auto animate-pulse"></div>
             <div className="h-6 bg-accent rounded w-96 mx-auto animate-pulse"></div>
@@ -66,7 +66,7 @@ const DynamicExperience: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="space-y-8">
+        <div className="space-y-8 px-4 sm:px-6 lg:px-8">
           {experience.map((exp, index) => (
             <motion.div
               key={exp.id}

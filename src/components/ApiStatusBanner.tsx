@@ -12,7 +12,7 @@ const ApiStatusBanner: React.FC = () => {
 
   return (
     <div className="bg-orange-50 border-b border-orange-200 px-4 py-2">
-      <div className="container">
+      <div className="container px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-center gap-2 text-sm">
           <WifiOff className="w-4 h-4 text-orange-500" />
           <span className="text-orange-700">
