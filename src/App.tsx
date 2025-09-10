@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Toaster } from "./components/ui/sonner";
 import { CMSProvider } from "./contexts/CMSContext";
 import { HybridCMSProvider } from "./contexts/HybridCMSContext";
 import { SupabaseCMSProvider } from "./contexts/SupabaseCMSContext";
 import { DynamicCMSProvider } from "./contexts/DynamicCMSContext";
+import { ThemeProvider } from "./components/ThemeProvider";
 import SEOHead from "./components/SEOHead";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import Header from "./components/Header";
@@ -20,9 +21,10 @@ import ProjectsPage from "./components/ProjectsPage";
 import DynamicCMSDashboard from "./components/DynamicCMSDashboard";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import DarkModeTest from "./components/DarkModeTest";
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<'main' | 'blog' | 'projects'>('main')
+  const [currentPage, setCurrentPage] = useState<'main' | 'blog' | 'projects' | 'dark-mode-test'>('main')
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null)
   const [selectedBlogPostId, setSelectedBlogPostId] = useState<string | null>(null)
   
@@ -30,15 +32,40 @@ export default function App() {
   const [mainPageModalProject, setMainPageModalProject] = useState<string | null>(null)
   const [mainPageModalBlogPost, setMainPageModalBlogPost] = useState<string | null>(null)
 
+  // Handle hash-based routing
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash === '#/dark-mode-test') {
+        setCurrentPage('dark-mode-test');
+      } else if (hash === '#/main' || hash === '') {
+        setCurrentPage('main');
+      }
+    };
+
+    // Check initial hash
+    handleHashChange();
+    
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+    
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
+
   const navigateToBlog = (postId?: string) => {
+    window.location.hash = '';
     if (postId) setSelectedBlogPostId(postId)
     setCurrentPage('blog')
   }
   const navigateToProjects = (projectId?: string) => {
+    window.location.hash = '';
     if (projectId) setSelectedProjectId(projectId)
     setCurrentPage('projects')
   }
   const navigateToMain = () => {
+    window.location.hash = '';
     setCurrentPage('main')
     setSelectedProjectId(null)
     setSelectedBlogPostId(null)
@@ -49,6 +76,11 @@ export default function App() {
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }, 100)
+  }
+  
+  const navigateToDarkModeTest = () => {
+    window.location.hash = '/dark-mode-test';
+    setCurrentPage('dark-mode-test');
   }
 
   const scrollToProjects = () => {
@@ -77,69 +109,79 @@ export default function App() {
   }, [])
 
   return (
-    <CMSProvider>
-      <SupabaseCMSProvider>
-        <HybridCMSProvider>
-          <DynamicCMSProvider>
-            <SEOHead />
-            <GoogleAnalytics gaId={import.meta.env?.VITE_GA_ID || "G-DEVELOPMENT"} />
-        {currentPage === 'main' ? (
-          <div className="min-h-screen bg-background text-foreground">
-            <ApiStatusBanner />
-            <Header onBlogClick={navigateToBlog} onProjectsClick={navigateToProjects} />
+    <ThemeProvider>
+      <CMSProvider>
+        <SupabaseCMSProvider>
+          <HybridCMSProvider>
+            <DynamicCMSProvider>
+              <SEOHead />
+              <GoogleAnalytics gaId={import.meta.env?.VITE_GA_ID || "G-DEVELOPMENT"} />
+          {currentPage === 'main' ? (
+            <div className="min-h-screen bg-background text-foreground">
+              <ApiStatusBanner />
+              <Header onBlogClick={navigateToBlog} onProjectsClick={navigateToProjects} />
 
-            <main>
-              <DynamicHero onScrollToProjects={scrollToProjects} />
-              <About />
-              <DynamicExperience />
-              <DynamicSkills />
-              <Projects 
-                onProjectClick={navigateToProjects} 
-                onModalProjectClick={setMainPageModalProject}
-                expandedProjectId={mainPageModalProject}
-                onCloseModal={() => setMainPageModalProject(null)}
-              />
-              <DynamicEducation />
-              <Blog 
-                onViewAllClick={navigateToBlog} 
-                onPostClick={navigateToBlog}
-                onModalPostClick={setMainPageModalBlogPost}
-                expandedPostId={mainPageModalBlogPost}
-                onCloseModal={() => setMainPageModalBlogPost(null)}
-              />
-              <DynamicCMSDashboard />
-              <Contact />
-            </main>
+              <main>
+                <DynamicHero onScrollToProjects={scrollToProjects} />
+                <About />
+                <DynamicExperience />
+                <DynamicSkills />
+                <Projects 
+                  onProjectClick={navigateToProjects} 
+                  onModalProjectClick={setMainPageModalProject}
+                  expandedProjectId={mainPageModalProject}
+                  onCloseModal={() => setMainPageModalProject(null)}
+                />
+                <DynamicEducation />
+                <Blog 
+                  onViewAllClick={navigateToBlog} 
+                  onPostClick={navigateToBlog}
+                  onModalPostClick={setMainPageModalBlogPost}
+                  expandedPostId={mainPageModalBlogPost}
+                  onCloseModal={() => setMainPageModalBlogPost(null)}
+                />
+                <DynamicCMSDashboard />
+                <Contact />
+              </main>
 
-            <Footer />
-          </div>
-        ) : currentPage === 'blog' ? (
-          <BlogPage 
-            onBackToMain={navigateToMain}
-            selectedBlogPostId={selectedBlogPostId}
-            onBlogPostSelect={setSelectedBlogPostId}
-          />
-        ) : (
-          <ProjectsPage 
-            onBackToMain={navigateToMain} 
-            selectedProjectId={selectedProjectId}
-            onProjectSelect={setSelectedProjectId}
-          />
-        )}
-
-            <Toaster
-              position="bottom-right"
-              toastOptions={{
-                style: {
-                  background: "var(--background)",
-                  color: "var(--foreground)",
-                  border: "1px solid var(--border)",
-                },
-              }}
+              <Footer />
+            </div>
+          ) : currentPage === 'blog' ? (
+            <BlogPage 
+              onBackToMain={navigateToMain}
+              selectedBlogPostId={selectedBlogPostId}
+              onBlogPostSelect={setSelectedBlogPostId}
             />
-          </DynamicCMSProvider>
-        </HybridCMSProvider>
-      </SupabaseCMSProvider>
-    </CMSProvider>
+          ) : currentPage === 'projects' ? (
+            <ProjectsPage 
+              onBackToMain={navigateToMain} 
+              selectedProjectId={selectedProjectId}
+              onProjectSelect={setSelectedProjectId}
+            />
+          ) : (
+            <div className="min-h-screen bg-background text-foreground">
+              <Header onBlogClick={navigateToBlog} onProjectsClick={navigateToProjects} />
+              <main>
+                <DarkModeTest />
+              </main>
+              <Footer />
+            </div>
+          )}
+
+              <Toaster
+                position="bottom-right"
+                toastOptions={{
+                  style: {
+                    background: "var(--background)",
+                    color: "var(--foreground)",
+                    border: "1px solid var(--border)",
+                  },
+                }}
+              />
+            </DynamicCMSProvider>
+          </HybridCMSProvider>
+        </SupabaseCMSProvider>
+      </CMSProvider>
+    </ThemeProvider>
   );
 }

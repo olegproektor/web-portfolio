@@ -5,6 +5,7 @@ import { Button } from './ui/button'
 import { Menu, X, Download, Settings, Briefcase, FileText } from 'lucide-react'
 import { motion } from 'motion/react'
 import { useCMS } from '../contexts/CMSContext'
+import { ThemeToggle } from './ThemeToggle'
 
 interface HeaderProps {
   onBlogClick?: () => void
@@ -50,6 +51,9 @@ const Header: React.FC<HeaderProps> = ({ onBlogClick, onProjectsClick }) => {
       onBlogClick()
     } else if (href === '#projects' && onProjectsClick) {
       onProjectsClick()
+    } else if (href === '#/dark-mode-test') {
+      // Navigate to dark mode test page
+      window.location.hash = '/dark-mode-test';
     } else {
       const element = document.querySelector(href)
       if (element) {
@@ -64,7 +68,7 @@ const Header: React.FC<HeaderProps> = ({ onBlogClick, onProjectsClick }) => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/80 backdrop-blur-md shadow-soft' : 'bg-transparent'
+        isScrolled ? 'bg-background/80 backdrop-blur-md shadow-soft border-b' : 'bg-transparent'
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -85,10 +89,17 @@ const Header: React.FC<HeaderProps> = ({ onBlogClick, onProjectsClick }) => {
                 {item.label}
               </button>
             ))}
+            <button
+              onClick={() => scrollToSection('#/dark-mode-test')}
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Dark Mode Test
+            </button>
           </nav>
 
           {/* CTA Button */}
           <div className="hidden lg:flex items-center space-x-4">
+            <ThemeToggle />
             {state.isAdmin && (
               <Button
                 onClick={() => scrollToSection('#cms')}
@@ -120,13 +131,16 @@ const Header: React.FC<HeaderProps> = ({ onBlogClick, onProjectsClick }) => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2"
-            aria-label={isMobileMenuOpen ? "Закрыть меню" : "Открыть меню"}
-          >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          <div className="flex items-center lg:hidden">
+            <ThemeToggle />
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 ml-2"
+              aria-label={isMobileMenuOpen ? "Закрыть меню" : "Открыть меню"}
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -134,7 +148,7 @@ const Header: React.FC<HeaderProps> = ({ onBlogClick, onProjectsClick }) => {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="lg:hidden absolute top-full left-0 right-0 bg-white shadow-medium border-t"
+            className="lg:hidden absolute top-full left-0 right-0 bg-background shadow-medium border-t"
           >
             <nav className="container mx-auto px-4 sm:px-6 py-4 space-y-2">
               {navItems.map((item) => (
@@ -146,6 +160,12 @@ const Header: React.FC<HeaderProps> = ({ onBlogClick, onProjectsClick }) => {
                   {item.label}
                 </button>
               ))}
+              <button
+                onClick={() => scrollToSection('#/dark-mode-test')}
+                className="block w-full text-left px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent rounded-lg transition-colors"
+              >
+                Dark Mode Test
+              </button>
               <div className="pt-4 border-t space-y-2">
                 {state.isAdmin && (
                   <Button
