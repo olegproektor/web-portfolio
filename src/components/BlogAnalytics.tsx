@@ -6,7 +6,7 @@ import { Badge } from './ui/badge'
 import { Button } from './ui/button'
 import { useCMS } from '../contexts/CMSContext'
 import { useGoogleAnalytics, trackBlogPostView } from '../hooks/useGoogleAnalytics'
-import { motion } from 'motion/react'
+import { motion } from 'framer-motion'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from 'recharts'
 import { TrendingUp, Eye, Heart, MessageCircle, Share2, Calendar, RefreshCw, Users, Clock, MousePointer } from 'lucide-react'
 

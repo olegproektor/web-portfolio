@@ -161,6 +161,7 @@ export default function App() {
                     color: "var(--foreground)",
                     border: "1px solid var(--border)",
                   },
+                  duration: 5000, // Show toasts for 5 seconds instead of default
                 }}
               />
             </DynamicCMSProvider>

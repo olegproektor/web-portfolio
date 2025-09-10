@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { Button } from './ui/button'
 import { Menu, X, Download, Settings } from 'lucide-react'
-import { motion } from 'motion/react'
+import { motion } from 'framer-motion'
 import { useCMS } from '../contexts/CMSContext'
 import { ThemeToggle } from './ThemeToggle'
 

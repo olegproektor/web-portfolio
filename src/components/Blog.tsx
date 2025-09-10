@@ -7,9 +7,9 @@ import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { ImageWithFallback } from './figma/ImageWithFallback'
 import { useCMS } from '../contexts/CMSContext'
-import { motion, AnimatePresence } from 'motion/react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Search, Calendar, Clock, User, Plus, Edit3, Trash2, X } from 'lucide-react'
-import { toast } from 'sonner@2.0.3'
+import { toast } from 'sonner'
 import BlogSEO from './BlogSEO'
 import { trackBlogPostView, trackReadingTime } from '../hooks/useGoogleAnalytics'
 
@@ -92,7 +92,7 @@ const Blog: React.FC<BlogProps> = ({
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="mb-4">Блог</h2>
+          <h2 className="mb-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Блог</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Делюсь опытом, инсайтами и размышлениями о технологиях, дизайне и бизнес-процессах
           </p>
@@ -273,6 +273,7 @@ const Blog: React.FC<BlogProps> = ({
               variant="outline" 
               size="lg"
               onClick={onViewAllClick}
+              className="gradient-bg text-white hover:opacity-90"
             >
               Читать все статьи
             </Button>
@@ -402,7 +403,7 @@ const BlogPost: React.FC<{
           onClick={onBack}
           className="mb-8"
         >
-          ← Назад к блогу
+          ← Назад
         </Button>
 
         <article>

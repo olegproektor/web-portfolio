@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { Card } from './ui/card'
 import { Badge } from './ui/badge'
 import { Progress } from './ui/progress'
-import { motion } from 'motion/react'
+import { motion } from 'framer-motion'
 
 const Skills = () => {
   const [skillsData, setSkillsData] = useState<any>(null)
@@ -113,7 +113,7 @@ const Skills = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="mb-4">Навыки и технологии</h2>
+          <h2 className="mb-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Навыки и технологии</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Мой технический стек и профессиональные компетенции
           </p>
@@ -210,7 +210,7 @@ const Skills = () => {
               <div className="mt-8">
                 <h4 className="mb-4">Профессиональные навыки</h4>
                 <div className="flex flex-wrap gap-2">
-                  {softSkills.map((skill, index) => (
+                  {softSkills.map((skill: string, index: number) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, scale: 0.8 }}
@@ -238,7 +238,7 @@ const Skills = () => {
             <Card className="p-6 lg:p-8 h-full shadow-soft hover:shadow-medium transition-shadow">
               <h3 className="mb-6">Инструменты и технологии</h3>
               <div className="flex flex-wrap gap-3">
-                {tools.map((tool, index) => (
+                {tools.map((tool: string, index: number) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}

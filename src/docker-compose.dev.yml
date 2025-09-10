@@ -9,11 +9,10 @@ services:
     container_name: portfolio-website-dev
     ports:
       - "3000:5173"
+    env_file:
+      - ../.env
     environment:
       - NODE_ENV=development
-      - VITE_GA_ID=${VITE_GA_ID:-G-DEVELOPMENT}
-      - VITE_SUPABASE_URL=${VITE_SUPABASE_URL:-}
-      - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY:-}
     stdin_open: true
     tty: true
     networks:

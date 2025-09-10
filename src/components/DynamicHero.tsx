@@ -3,7 +3,7 @@
 import React from 'react'
 import { Button } from './ui/button'
 import { ImageWithFallback } from './figma/ImageWithFallback'
-import { motion } from 'motion/react'
+import { motion } from 'framer-motion'
 import { ChevronDown, Briefcase, Github, Linkedin, MapPin, User, Mail } from 'lucide-react'
 import HeroAtomAnimation from './HeroAtomAnimation'
 import { useDynamicCMS } from '../contexts/DynamicCMSContext'

@@ -2,7 +2,7 @@
 
 import { Card } from './ui/card'
 import { Badge } from './ui/badge'
-import { motion } from 'motion/react'
+import { motion } from 'framer-motion'
 import { Award, Users, Clock, Code } from 'lucide-react'
 
 const About = () => {
@@ -49,7 +49,7 @@ const About = () => {
         >
           {/* Text Content */}
           <div>
-            <h2 className="mb-8">О себе</h2>
+            <h2 className="mb-8 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">О себе</h2>
             
             <div className="space-y-6 text-muted-foreground">
               <p className="leading-relaxed">

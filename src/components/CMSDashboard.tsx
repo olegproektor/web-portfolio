@@ -11,8 +11,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select'
 import { useCMS } from '../contexts/CMSContext'
 import type { BlogPost, PortfolioItem } from '../contexts/CMSContext'
-import { motion } from 'motion/react'
-import { toast } from 'sonner@2.0.3'
+import { motion } from 'framer-motion'
+import { toast } from 'sonner'
 import BlogAnalytics from './BlogAnalytics'
 import { 
   Settings, 
@@ -587,7 +587,7 @@ const BlogPostForm: React.FC<{
           <label>Статус</label>
           <Select
             value={formData.status}
-            onValueChange={(value) => setFormData({ ...formData, status: value as 'draft' | 'published' })}
+            onValueChange={(value: string) => setFormData({ ...formData, status: value as 'draft' | 'published' })}
           >
             <SelectTrigger>
               <SelectValue />
@@ -724,7 +724,7 @@ const PortfolioItemForm: React.FC<{
           <label>Тип доступа</label>
           <Select
             value={formData.accessType}
-            onValueChange={(value) => setFormData({ ...formData, accessType: value as 'public' | 'private' })}
+            onValueChange={(value: string) => setFormData({ ...formData, accessType: value as 'public' | 'private' })}
           >
             <SelectTrigger>
               <SelectValue />
@@ -739,7 +739,7 @@ const PortfolioItemForm: React.FC<{
           <label>Статус</label>
           <Select
             value={formData.status}
-            onValueChange={(value) => setFormData({ ...formData, status: value as 'active' | 'archived' })}
+            onValueChange={(value: string) => setFormData({ ...formData, status: value as 'active' | 'archived' })}
           >
             <SelectTrigger>
               <SelectValue />
@@ -756,7 +756,7 @@ const PortfolioItemForm: React.FC<{
         <label>Тип кнопки</label>
         <Select
           value={formData.buttonType}
-          onValueChange={(value) => setFormData({ ...formData, buttonType: value as 'github' | 'link' | 'none' })}
+          onValueChange={(value: string) => setFormData({ ...formData, buttonType: value as 'github' | 'link' | 'none' })}
         >
           <SelectTrigger>
             <SelectValue />

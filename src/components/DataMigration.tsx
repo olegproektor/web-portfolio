@@ -129,11 +129,11 @@ export const DataMigration: React.FC = () => {
 
       // Import to localStorage
       data.blogPosts.forEach((post: any) => {
-        localCMS.dispatch({ type: 'CREATE_POST', payload: post });
+        localCMS.dispatch({ type: 'ADD_BLOG_POST', payload: post });
       });
 
       data.portfolioItems.forEach((item: any) => {
-        localCMS.dispatch({ type: 'CREATE_PROJECT', payload: item });
+        localCMS.dispatch({ type: 'ADD_PORTFOLIO_ITEM', payload: item });
       });
 
       toast.success(`Импортировано ${data.blogPosts.length} постов и ${data.portfolioItems.length} проектов`);

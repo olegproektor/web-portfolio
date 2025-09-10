@@ -3,7 +3,7 @@
 import React from 'react'
 import { Card } from './ui/card'
 import { Badge } from './ui/badge'
-import { motion } from 'motion/react'
+import { motion } from 'framer-motion'
 import { GraduationCap, Award, Calendar, ExternalLink } from 'lucide-react'
 
 const Education = () => {
@@ -46,9 +46,9 @@ const Education = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="mb-4">Образование и достижения</h2>
+          <h2 className="mb-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Образование и достижения</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Мое академическое образование, профессиональные сертификаты и награды
+            Мое образование и профессиональные сертификаты
           </p>
         </motion.div>
 

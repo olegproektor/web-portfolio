@@ -6,9 +6,9 @@ import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { Textarea } from './ui/textarea'
 import { Label } from './ui/label'
-import { motion } from 'motion/react'
-import { useForm } from 'react-hook-form@7.55.0'
-import { toast } from 'sonner@2.0.3'
+import { motion } from 'framer-motion'
+import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import { Mail, Phone, MapPin, Github, Linkedin, Send, Download, MessageCircle, Users } from 'lucide-react'
 
 interface ContactForm {
@@ -91,7 +91,7 @@ const Contact = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="mb-4">Свяжитесь со мной</h2>
+          <h2 className="mb-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Свяжитесь со мной</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Готов обсудить ваш проект или новые возможности сотрудничества
           </p>
@@ -260,8 +260,18 @@ const Contact = () => {
                 <Button 
                   className="w-full gradient-bg text-white hover:opacity-90 transition-opacity"
                   onClick={() => {
-                    window.open('https://goryachij-klyuch.hh.ru/resume/edad53b8ff0f1da9c30039ed1f306e5674576f', '_blank')
-                    toast.success('Переход к резюме на HeadHunter')
+                    const fileURL = localStorage.getItem('resume-file')
+                    const filename = localStorage.getItem('resume-filename')
+                    if (fileURL && filename) {
+                      const link = document.createElement('a')
+                      link.href = fileURL
+                      link.download = filename
+                      link.click()
+                    } else {
+                      // Fallback to HeadHunter link if no local file is uploaded
+                      window.open('https://goryachij-klyuch.hh.ru/resume/edad53b8ff0f1da9c30039ed1f306e5674576f', '_blank')
+                      toast.success('Переход к резюме на HeadHunter')
+                    }
                   }}
                 >
                   <Download className="w-4 h-4 mr-2" />

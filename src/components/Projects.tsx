@@ -5,7 +5,7 @@ import { Card } from './ui/card'
 import { Badge } from './ui/badge'
 import { Button } from './ui/button'
 import { ImageWithFallback } from './figma/ImageWithFallback'
-import { motion, AnimatePresence } from 'motion/react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { ExternalLink, Github, Eye, EyeOff, Calendar, X } from 'lucide-react'
 import { useCMS } from '../contexts/CMSContext'
 
@@ -56,7 +56,7 @@ const Projects: React.FC<ProjectsProps> = ({
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="mb-4">Проекты</h2>
+          <h2 className="mb-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Проекты</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Избранные работы, демонстрирующие мои навыки и подход к разработке
           </p>
@@ -157,7 +157,7 @@ const Projects: React.FC<ProjectsProps> = ({
                       <Button
                         size="sm"
                         className="flex-1 gradient-bg text-white hover:opacity-90 shadow-soft"
-                        onClick={(e) => {
+                        onClick={(e: React.MouseEvent) => {
                           e.stopPropagation()
                           window.open(project.github, '_blank')
                           handleProjectInteraction(project.title, 'github')
@@ -171,7 +171,7 @@ const Projects: React.FC<ProjectsProps> = ({
                       <Button
                         size="sm"
                         className="flex-1 gradient-bg text-white hover:opacity-90 shadow-soft"
-                        onClick={(e) => {
+                        onClick={(e: React.MouseEvent) => {
                           e.stopPropagation()
                           window.open(project.buttonUrl, '_blank')
                           handleProjectInteraction(project.title, 'link')
@@ -218,7 +218,7 @@ const Projects: React.FC<ProjectsProps> = ({
           <Button 
             variant="outline" 
             size="lg"
-            className="shadow-soft hover:shadow-medium"
+            className="shadow-soft hover:shadow-medium gradient-bg text-white hover:opacity-90"
             onClick={() => {
               window.open('https://github.com/olegproektor', '_blank')
               handleProjectInteraction('GitHub Profile', 'visit')

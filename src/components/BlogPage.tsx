@@ -6,8 +6,8 @@ import { Badge } from './ui/badge'
 import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { ImageWithFallback } from './figma/ImageWithFallback'
-import { useCMS, BlogPost } from '../contexts/CMSContext'
-import { motion, AnimatePresence } from 'motion/react'
+import { useCMS, type BlogPost } from '../contexts/CMSContext'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Search, Calendar, Clock, User, ArrowLeft, Home, X } from 'lucide-react'
 import BlogSEO from './BlogSEO'
 import { trackBlogPostView, trackReadingTime } from '../hooks/useGoogleAnalytics'
@@ -84,22 +84,20 @@ const BlogPage: React.FC<BlogPageProps> = ({
       
       {/* Navigation */}
       <div className="sticky top-0 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
-        <div className="container py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              {onBackToMain && (
-                <Button variant="ghost" onClick={onBackToMain}>
-                  <ArrowLeft className="w-4 h-4 mr-2" />
-                  Назад к портфолио
-                </Button>
-              )}
-              <h1 className="text-2xl font-bold">Блог</h1>
-            </div>
-            <Button variant="ghost" onClick={onBackToMain}>
-              <Home className="w-4 h-4 mr-2" />
-              Главная
-            </Button>
+        <div className="container h-16 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            {onBackToMain && (
+              <Button variant="ghost" onClick={onBackToMain}>
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Назад
+              </Button>
+            )}
           </div>
+          <h1 className="text-lg font-semibold gradient-text">Блог</h1>
+          <Button variant="ghost" onClick={onBackToMain}>
+            <Home className="w-4 h-4 mr-2" />
+            Главная
+          </Button>
         </div>
       </div>
 
@@ -356,7 +354,7 @@ const BlogPost: React.FC<{
           onClick={onBack}
           className="mb-8"
         >
-          ← Назад к блогу
+          ← Назад
         </Button>
 
         <article>

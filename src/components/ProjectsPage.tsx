@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'motion/react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft, Github, ExternalLink, Calendar, Filter, Search, Eye, EyeOff, X, Link } from 'lucide-react'
 import { Button } from './ui/button'
 import { Card } from './ui/card'
@@ -90,7 +90,7 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({
             className="hover:bg-accent"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Назад к портфолио
+            Назад
           </Button>
           
           <h1 className="text-lg font-semibold gradient-text">Проекты</h1>
@@ -278,7 +278,7 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({
                         <Button
                           size="sm"
                           className="flex-1 gradient-bg text-white hover:opacity-90"
-                          onClick={(e) => {
+                          onClick={(e: React.MouseEvent) => {
                             e.stopPropagation()
                             window.open(project.github, '_blank')
                             handleProjectInteraction(`GitHub: ${project.title}`)
@@ -292,7 +292,7 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({
                         <Button
                           size="sm"
                           className="flex-1 gradient-bg text-white hover:opacity-90"
-                          onClick={(e) => {
+                          onClick={(e: React.MouseEvent) => {
                             e.stopPropagation()
                             window.open(project.buttonUrl, '_blank')
                             handleProjectInteraction(`Link: ${project.title}`)

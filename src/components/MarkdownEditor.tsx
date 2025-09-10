@@ -5,7 +5,7 @@ import { Card } from './ui/card'
 import { Button } from './ui/button'
 import { Textarea } from './ui/textarea'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs'
-import { motion } from 'motion/react'
+import { motion } from 'framer-motion'
 import { 
   Bold, 
   Italic, 

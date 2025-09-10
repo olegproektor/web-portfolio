@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useRef } from 'react'
-import { motion } from 'motion/react'
+import { motion } from 'framer-motion'
 
 const AnimatedBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)

@@ -43,10 +43,11 @@ import {
   TrendingUp,
   Activity,
   Calendar,
-  Globe
+  Globe,
+  CheckCircle
 } from 'lucide-react'
-import { motion } from 'motion/react'
-import { toast } from 'sonner@2.0.3'
+import { motion } from 'framer-motion'
+import { toast } from 'sonner'
 import { useDynamicCMS, ProfileData, Experience, Skill, Education, BlogPost, PortfolioItem } from '../contexts/DynamicCMSContext'
 import MarkdownEditor from './MarkdownEditor'
 
@@ -1293,6 +1294,36 @@ const DynamicCMSDashboard: React.FC = () => {
                 />
               </div>
               <div className="col-span-2">
+                <Label htmlFor="resume">Загрузить резюме (PDF)</Label>
+                <Input
+                  id="resume"
+                  type="file"
+                  accept=".pdf"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file && file.type === 'application/pdf') {
+                      const reader = new FileReader();
+                      reader.onload = (event) => {
+                        const result = event.target?.result as string;
+                        // Save to localStorage
+                        localStorage.setItem('resume-file', result);
+                        localStorage.setItem('resume-filename', file.name);
+                        toast.success('Резюме успешно загружено!');
+                      };
+                      reader.readAsDataURL(file);
+                    } else if (file) {
+                      toast.error('Пожалуйста, выберите PDF файл');
+                    }
+                  }}
+                />
+                {localStorage.getItem('resume-file') && (
+                  <div className="mt-2 text-sm text-green-600 flex items-center">
+                    <CheckCircle className="h-4 w-4 mr-1" />
+                    Резюме загружено: {localStorage.getItem('resume-filename')}
+                  </div>
+                )}
+              </div>
+              <div className="col-span-2">
                 <div className="flex items-center space-x-2">
                   <Switch
                     id="available"
@@ -1453,7 +1484,7 @@ const DynamicCMSDashboard: React.FC = () => {
             </Button>
             <Button onClick={handleSkillSave} disabled={isSubmitting}>
               <Save className="w-4 h-4 mr-2" />
-              Со��ранить
+              Сохранить
             </Button>
           </DialogFooter>
         </DialogContent>

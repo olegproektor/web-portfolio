@@ -3,7 +3,7 @@
 import React from 'react'
 import { Button } from './ui/button'
 import { ImageWithFallback } from './figma/ImageWithFallback'
-import { motion } from 'motion/react'
+import { motion } from 'framer-motion'
 import { ChevronDown, Briefcase, Github, Linkedin, MapPin, User } from 'lucide-react'
 import HeroAtomAnimation from './HeroAtomAnimation'
 
@@ -39,14 +39,18 @@ const Hero: React.FC<HeroProps> = ({ onScrollToProjects }) => {
                 <span className="text-sm font-medium">Доступен для работы</span>
               </div>
               
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
-                Привет, я{' '}
-                <span className="gradient-text">Олег Кононенко</span>
-              </h1>
+              <div className="mb-4">
+                <span className="block text-sm sm:text-base md:text-lg font-medium">
+                  Привет, я
+                </span>
+                <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium gradient-text">
+                  Олег Кононенко
+                </span>
+              </div>
               
-              <h2 className="text-xl lg:text-2xl text-muted-foreground mb-6">
+              <div className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-6 font-medium">
                 Product Manager полного цикла
-              </h2>
+              </div>
               
               <p className="text-lg text-muted-foreground mb-8 max-w-2xl leading-relaxed">
                 Я трансформирую идеи в решения, объединяя IT, управление проектами и креативный дизайн. От реконструкции IKEA и внедрения CRM-систем до создания онлайн-семинаров и изучения ИИ — я нахожу комплексные подходы к задачам любого масштаба.
@@ -70,7 +74,7 @@ const Hero: React.FC<HeroProps> = ({ onScrollToProjects }) => {
                   variant="outline" 
                   size="lg"
                   onClick={() => scrollToAbout()}
-                  className="shadow-soft hover:shadow-medium"
+                  className="text-base sm:text-lg shadow-soft hover:shadow-medium"
                 >
                   <User className="w-4 h-4 mr-2" />
                   О себе
@@ -90,7 +94,7 @@ const Hero: React.FC<HeroProps> = ({ onScrollToProjects }) => {
                   href="https://www.linkedin.com/in/kononenkooleg"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-full bg-accent text-muted-foreground hover:text-foreground hover:bg-accent/80 transition-all shadow-soft hover:shadow-medium"
+                  className="p-3 rounded-full bg-accent text-muted-foreground hover:text-foreground hover:bg-accent/880 transition-all shadow-soft hover:shadow-medium"
                 >
                   <Linkedin className="w-5 h-5" />
                 </a>

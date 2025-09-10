@@ -3,7 +3,7 @@
 import React from 'react'
 import { Card } from './ui/card'
 import { Badge } from './ui/badge'
-import { motion } from 'motion/react'
+import { motion } from 'framer-motion'
 import { Calendar, MapPin, ExternalLink } from 'lucide-react'
 
 const Experience = () => {
@@ -90,7 +90,7 @@ const Experience = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="mb-4">Опыт работы</h2>
+          <h2 className="mb-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Опыт работы</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Мой профессиональный путь в управлении проектами и комплексных решениях
           </p>

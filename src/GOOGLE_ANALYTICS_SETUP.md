@@ -30,6 +30,51 @@ VITE_GA_ID=G-XXXXXXXXXX
 
 Замените `G-XXXXXXXXXX` на ваш реальный Measurement ID.
 
+### Конфигурация окружения для Google Analytics
+
+#### Файлы окружения
+
+Проект поддерживает различные режимы работы Google Analytics через переменные окружения:
+
+- **`.env`** - основной файл конфигурации
+- **`.env.development`** - специфичные настройки для разработки
+- **`.env.production`** - специфичные настройки для продакшена
+- **`.env.local`** - локальные настройки (игнорируются Git)
+- **`.env.development.local`** - локальные настройки для разработки
+- **`.env.production.local`** - локальные настройки для продакшена
+
+#### Переменные окружения Google Analytics
+
+```env
+# Google Analytics (опционально)
+VITE_GA_ID=G-XXXXXXXXXX
+
+# Альтернативная переменная (для совместимости)
+VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+```
+
+#### Приоритет переменных окружения
+
+Переменные окружения загружаются с следующим приоритетом (от высшего к низшему):
+1. **Системные переменные окружения** (export в shell, переменные Docker, переменные платформы)
+2. **.env.local** (если существует)
+3. **.env.[mode].local** (если существует, где [mode] - development или production)
+4. **.env.[mode]** (зависит от NODE_ENV)
+5. **.env**
+6. **Значения по умолчанию в коде**
+
+#### Режимы работы Google Analytics
+
+1. **Демо-режим** (по умолчанию в разработке):
+   - `VITE_GA_ID=G-DEVELOPMENT` или отсутствует
+   - Google Analytics отключен
+   - Нет отправки данных в Google
+
+2. **Production режим**:
+   - `VITE_GA_ID=G-XXXXXXXXXX` (реальный Measurement ID)
+   - Google Analytics включен
+   - Данные отправляются в Google Analytics
+
 ### 4. Деплой с Google Analytics
 
 После настройки переменных окружения и деплоя:
