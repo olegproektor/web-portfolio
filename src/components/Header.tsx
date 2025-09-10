@@ -51,9 +51,6 @@ const Header: React.FC<HeaderProps> = ({ onBlogClick, onProjectsClick }) => {
       onBlogClick()
     } else if (href === '#projects' && onProjectsClick) {
       onProjectsClick()
-    } else if (href === '#/dark-mode-test') {
-      // Navigate to dark mode test page
-      window.location.hash = '/dark-mode-test';
     } else {
       const element = document.querySelector(href)
       if (element) {
@@ -89,12 +86,6 @@ const Header: React.FC<HeaderProps> = ({ onBlogClick, onProjectsClick }) => {
                 {item.label}
               </button>
             ))}
-            <button
-              onClick={() => scrollToSection('#/dark-mode-test')}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Dark Mode Test
-            </button>
           </nav>
 
           {/* CTA Button */}
@@ -160,12 +151,6 @@ const Header: React.FC<HeaderProps> = ({ onBlogClick, onProjectsClick }) => {
                   {item.label}
                 </button>
               ))}
-              <button
-                onClick={() => scrollToSection('#/dark-mode-test')}
-                className="block w-full text-left px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent rounded-lg transition-colors"
-              >
-                Dark Mode Test
-              </button>
               <div className="pt-4 border-t space-y-2">
                 {state.isAdmin && (
                   <Button

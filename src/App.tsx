@@ -21,10 +21,9 @@ import ProjectsPage from "./components/ProjectsPage";
 import DynamicCMSDashboard from "./components/DynamicCMSDashboard";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import DarkModeTest from "./components/DarkModeTest";
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<'main' | 'blog' | 'projects' | 'dark-mode-test'>('main')
+  const [currentPage, setCurrentPage] = useState<'main' | 'blog' | 'projects'>('main')
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null)
   const [selectedBlogPostId, setSelectedBlogPostId] = useState<string | null>(null)
   
@@ -36,9 +35,7 @@ export default function App() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;
-      if (hash === '#/dark-mode-test') {
-        setCurrentPage('dark-mode-test');
-      } else if (hash === '#/main' || hash === '') {
+      if (hash === '#/main' || hash === '') {
         setCurrentPage('main');
       }
     };
@@ -78,10 +75,6 @@ export default function App() {
     }, 100)
   }
   
-  const navigateToDarkModeTest = () => {
-    window.location.hash = '/dark-mode-test';
-    setCurrentPage('dark-mode-test');
-  }
 
   const scrollToProjects = () => {
     const element = document.querySelector('#projects')
@@ -152,20 +145,12 @@ export default function App() {
               selectedBlogPostId={selectedBlogPostId}
               onBlogPostSelect={setSelectedBlogPostId}
             />
-          ) : currentPage === 'projects' ? (
+          ) : (
             <ProjectsPage 
               onBackToMain={navigateToMain} 
               selectedProjectId={selectedProjectId}
               onProjectSelect={setSelectedProjectId}
             />
-          ) : (
-            <div className="min-h-screen bg-background text-foreground">
-              <Header onBlogClick={navigateToBlog} onProjectsClick={navigateToProjects} />
-              <main>
-                <DarkModeTest />
-              </main>
-              <Footer />
-            </div>
           )}
 
               <Toaster
