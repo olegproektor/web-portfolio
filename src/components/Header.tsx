@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { Button } from './ui/button'
-import { Menu, X, Download, Settings, Briefcase, FileText } from 'lucide-react'
+import { Menu, X, Download, Settings } from 'lucide-react'
 import { motion } from 'motion/react'
 import { useCMS } from '../contexts/CMSContext'
 import { ThemeToggle } from './ThemeToggle'
